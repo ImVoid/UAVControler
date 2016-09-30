@@ -5,7 +5,8 @@ package top.lightblog.helper;
  */
 
 public class Status {
-    public static boolean SwitchStatus = false;     //开关状态
-    public static final int BLINK_ON = 1;    //闪烁信息
-    public static final int BLINK_OFF = 2;    //熄灭信息
+    public static boolean switchStatus = false;     //开关状态
+    public static boolean blinkMod = false;         //false 快闪 true 慢闪
+    public static final int BLINK_ON = 1;           //闪烁信息
+    public static final int BLINK_OFF = 2;          //熄灭信息
 }

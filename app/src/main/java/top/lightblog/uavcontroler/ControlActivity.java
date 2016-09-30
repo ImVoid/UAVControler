@@ -17,9 +17,6 @@ import top.lightblog.helper.*;
 
 public class ControlActivity extends AppCompatActivity implements View.OnClickListener{
 
-
-    public static boolean SwitchStatus = false;     //开关状态
-
     //声明控件
     private Button btnSwitch;
 
@@ -48,7 +45,7 @@ public class ControlActivity extends AppCompatActivity implements View.OnClickLi
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what){
-                case Status.BLINK_ON:   btnSwitch.setBackgroundResource(R.drawable.switch_on);
+                case Status.BLINK_ON:   btnSwitch.setBackgroundResource(Status.blinkMod ? R.drawable.switch_on_green : R.drawable.switch_on);
                     break;
                 case Status.BLINK_OFF:   btnSwitch.setBackgroundResource(R.drawable.switch_off);
                     break;
@@ -68,25 +65,28 @@ public class ControlActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void run() {
                 //如果打开了则关闭
-                if(Status.SwitchStatus) {
+                if(Status.switchStatus) {
                     message = new Message();
                     message.what = Status.BLINK_OFF;
                     handler.sendMessage(message);
-                    Status.SwitchStatus = false;
+                    Status.switchStatus = false;
                 }else { //否则启动
-                    Status.SwitchStatus = true;
-                    //启动时快速闪烁
+                    Status.switchStatus = true;
+                    Status.blinkMod = false;    //设置快闪模式
+                    //启动时快闪
                     for (int i = 0; i < 6; ++i) {
-                        if(Status.SwitchStatus ) {
+                        if(Status.switchStatus ) {
                             startBlink(100);
                         }else { //中途被关闭
                             stopBlink();
                             break;
                         }
                     }
-                    //开关呼吸灯效果
-                    while (Status.SwitchStatus){
-                        if(Status.SwitchStatus ) {
+                    //开关慢闪效果
+                    Status.blinkMod = true;     //设置慢闪模式
+                    lastMessage = Status.BLINK_ON;
+                    while (Status.switchStatus){
+                        if(Status.switchStatus ) {
                             startBlink(800);
                         }else { //中途被关闭
                             stopBlink();
@@ -112,7 +112,8 @@ public class ControlActivity extends AppCompatActivity implements View.OnClickLi
                 message = new Message();
                 message.what = Status.BLINK_OFF;
                 handler.sendMessage(message);
-                Status.SwitchStatus = false;
+                Status.switchStatus = false;
+                Status.blinkMod = false;
             }
         }).start();
     }
