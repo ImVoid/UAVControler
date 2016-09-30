@@ -7,10 +7,83 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ControlActivity">
+    tools:context=".ControlActivity"
+    android:background="@drawable/background">
 
-    <TextView
+    <Button
+        android:id="@+id/btn_switch"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/switch_off"
+        android:layout_alignParentRight="true"
+        />
+
+    <RelativeLayout
+        android:id="@+id/layout_left"
+        android:layout_below="@+id/btn_switch"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="100px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_forward"
+            android:layout_width="149px"
+            android:layout_height="213px"
+            android:background="@drawable/btn_forward_status"
+            />
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="149px"
+            android:layout_height="213px"
+            android:layout_marginTop="20px"
+            android:background="@drawable/btn_back_status"
+            android:layout_below="@+id/btn_forward"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_middle"
+        android:layout_below="@+id/btn_switch"
+        android:layout_toRightOf="@+id/layout_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_displayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is displays"
+            android:textSize="40sp"
+            android:gravity="center_vertical"
+            android:background="#cccccc"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_right"
+        android:layout_below="@+id/btn_switch"
+        android:layout_toRightOf="@id/layout_middle"
+        android:layout_marginTop="100px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_left"
+            android:layout_width="213px"
+            android:layout_height="149px"
+            android:background="@drawable/btn_left_status"
+            />
+
+        <Button
+            android:id="@+id/btn_right"
+            android:layout_toRightOf="@+id/btn_left"
+            android:layout_marginLeft="20px"
+            android:layout_width="213px"
+            android:layout_height="149px"
+            android:background="@drawable/btn_right_status"/>
+
+    </RelativeLayout>
+
 </RelativeLayout>
