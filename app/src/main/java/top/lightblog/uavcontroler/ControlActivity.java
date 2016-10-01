@@ -40,7 +40,9 @@ public class ControlActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    //处理异步消息更新UI
+    /**
+     * 处理异步消息更新UI
+     */
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -55,7 +57,9 @@ public class ControlActivity extends AppCompatActivity implements View.OnClickLi
         }
     };
 
-    //按钮点击事件处理方法
+    /**
+     * 按钮点击事件处理方法
+     */
     private void processBtnSwitch(){
         new Thread(new Runnable() {
 
@@ -96,18 +100,25 @@ public class ControlActivity extends AppCompatActivity implements View.OnClickLi
                 }
             }
 
-            private void startBlink(int millTime){
+            /**
+             * 发送闪烁信息
+             * @param time 闪烁间隔
+             */
+            private void startBlink(int time){
                 message = new Message();
                 message.what = lastMessage == Status.BLINK_OFF ? Status.BLINK_ON : Status.BLINK_OFF;
                 lastMessage = message.what;
                 handler.sendMessage(message);
                 try {
-                    Thread.sleep(millTime);
+                    Thread.sleep(time);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
 
+            /**
+             * 停止闪烁
+             */
             private void stopBlink(){
                 message = new Message();
                 message.what = Status.BLINK_OFF;
