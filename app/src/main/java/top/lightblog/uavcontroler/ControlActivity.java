@@ -57,8 +57,7 @@ public class ControlActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        //触发按钮释放震动反馈
-        vibrator.vibrate(pattern,-1);
+
         switch (view.getId()){
             case R.id.btn_switch:   new SwitchBlinkTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, btnSwitch);
                 break;
@@ -82,7 +81,14 @@ public class ControlActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         //触发按钮按下震动反馈
-        vibrator.vibrate(pattern,-1);
+        if(motionEvent.getAction()==MotionEvent.ACTION_DOWN){
+            vibrator.vibrate(pattern,-1);
+        }
+        //触发按钮释放震动反馈
+        if(motionEvent.getAction()==MotionEvent.ACTION_UP){
+            vibrator.vibrate(pattern,-1);
+        }
+
         return false;
     }
 }
