@@ -30,7 +30,6 @@ public class ControlActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_switch:   new SwitchBlinkTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, btnSwitch);
-                System.out.print("abc");
                 break;
             default:
                 break;
