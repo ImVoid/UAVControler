@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
 import top.lightblog.asynctask.SwitchBlinkTask;
 import top.lightblog.helper.*;
 
-public class ControlActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener{
+public class ControlActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener, SeekBar.OnSeekBarChangeListener{
 
     //震动传感器
     private Vibrator vibrator;
@@ -30,6 +31,7 @@ public class ControlActivity extends AppCompatActivity implements View.OnClickLi
     private Button btnRight;
     private Button btnLaunch;
     private Button btnLanding;
+    private SeekBar sbAcc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +49,15 @@ public class ControlActivity extends AppCompatActivity implements View.OnClickLi
         btnList.add(btnRight = (Button)findViewById(R.id.btn_right));
         btnList.add(btnLaunch = (Button)findViewById(R.id.btn_launch));
         btnList.add(btnLanding = (Button)findViewById(R.id.btn_landing));
-
         //所有button添加onClick和onTouch监听器
         for(Button btn : btnList){
             btn.setOnClickListener(this);
             btn.setOnTouchListener(this);
         }
+        //设置SeekBar监听器
+        sbAcc = (SeekBar)findViewById(R.id.sb_acc);
+        sbAcc.setOnTouchListener(this);
+        sbAcc.setOnSeekBarChangeListener(this);
     }
 
     @Override
@@ -76,6 +81,21 @@ public class ControlActivity extends AppCompatActivity implements View.OnClickLi
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
     }
 
     @Override
