@@ -11,7 +11,11 @@ import top.lightblog.uavcontroler.R;
  */
 
 public class Screen {
-    //负责设置屏幕为全屏，传入一个AppCompatActivity用于setContentView
+
+    /**
+     * 负责设置屏幕为全屏
+     * @param activity  需要设置全屏的Activity
+     */
     public static void setFullScreen(AppCompatActivity activity){
 
         activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); // 全屏显示
