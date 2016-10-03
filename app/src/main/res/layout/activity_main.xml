@@ -23,7 +23,7 @@
         android:layout_below="@+id/btn_switch"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="30px"
-
+        android:layout_marginLeft="4dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -47,21 +47,16 @@
 
     <LinearLayout
         android:id="@+id/layout_middle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="230dp"
+        android:layout_height="250dp"
         android:orientation="vertical"
-        android:layout_below="@+id/btn_switch"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
         android:layout_toRightOf="@+id/layout_left"
+        android:background="@drawable/displayer"
         >
 
-        <TextView
-            android:id="@+id/tv_displayer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="This is displays"
-            android:textSize="38sp"
-            android:gravity="center_vertical"
-            android:background="#cccccc"/>
 
     </LinearLayout>
 
