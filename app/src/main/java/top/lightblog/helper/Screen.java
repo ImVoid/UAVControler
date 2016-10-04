@@ -22,8 +22,6 @@ public class Screen {
         activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); // 禁止锁屏
 
-        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); // 设置横屏显示
-
         activity.setContentView(R.layout.activity_controller);
 
         activity.getSupportActionBar().hide(); //隐藏标题栏

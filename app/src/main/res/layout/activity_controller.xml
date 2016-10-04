@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="20dp"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ControlActivity"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp"
     android:background="@drawable/background">
 
     <Button
@@ -22,8 +22,7 @@
         android:id="@+id/layout_left"
         android:layout_below="@+id/btn_switch"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="30px"
-        android:layout_marginLeft="4dp"
+        android:translationY="-20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -50,9 +49,9 @@
         android:layout_width="230dp"
         android:layout_height="250dp"
         android:orientation="vertical"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginRight="14dp"
+        android:translationX="20dp"
+        android:translationY="-30dp"
+        android:layout_below="@+id/btn_switch"
         android:layout_toRightOf="@+id/layout_left"
         android:background="@drawable/displayer"
         >
@@ -62,27 +61,33 @@
 
     <RelativeLayout
         android:id="@+id/layout_right"
-        android:layout_below="@+id/btn_switch"
         android:layout_toRightOf="@id/layout_middle"
-        android:layout_marginTop="140px"
-        android:layout_marginLeft="4dp"
+        android:layout_below="@+id/btn_switch"
+        android:translationX="40dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <Button
             android:id="@+id/btn_left"
             android:layout_width="213px"
             android:layout_height="149px"
+            android:layout_above="@+id/sb_acc"
+            android:translationY="-50dp"
             android:background="@drawable/btn_left_status"
             />
 
         <Button
             android:id="@+id/btn_right"
             android:layout_toRightOf="@+id/btn_left"
+            android:layout_above="@+id/sb_acc"
             android:layout_marginLeft="20px"
             android:layout_width="213px"
             android:layout_height="149px"
-            android:background="@drawable/btn_right_status"/>
+            android:translationY="-50dp"
+
+            android:background="@drawable/btn_right_status"
+            />
         
         <Button
             android:id="@+id/btn_launch"
@@ -96,24 +101,60 @@
 
         <Button
             android:id="@+id/btn_landing"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/btn_launch"
+            android:layout_alignBottom="@+id/btn_launch"
             android:layout_width="152px"
-            android:layout_height="90px" 
+            android:layout_height="90px"
+            android:translationX="70dp"
             android:background="@drawable/btn_landing_status"
             />
 
         <SeekBar
             android:id="@+id/sb_acc"
-            android:layout_width="match_parent"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:progress="3"
             android:progressDrawable="@drawable/sb_acc_status"
-            android:layout_marginBottom="60px"
+            android:layout_above="@+id/btn_launch"
             android:thumb="@drawable/acc"
-            style="@android:style/Widget.SeekBar"
-            android:layout_above="@+id/btn_launch"/>
+            android:translationY="-20dp"
+            style="@android:style/Widget.SeekBar" />
 
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_funA"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_alignRight="@+id/layout_middle"
+        android:layout_alignParentBottom="true"
+        android:translationX="20dp"
+        android:background="@drawable/btn_fund_status"/>
+
+    <Button
+        android:id="@+id/btn_funB"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/btn_funA"
+        android:translationX="10dp"
+        android:background="@drawable/btn_func_status"/>
+
+    <Button
+        android:id="@+id/btn_funC"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/btn_funB"
+        android:background="@drawable/btn_funb_status"/>
+
+    <Button
+        android:id="@+id/btn_funD"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/btn_funC"
+        android:translationX="-10dp"
+        android:background="@drawable/btn_funa_status"/>
 
 </RelativeLayout>
