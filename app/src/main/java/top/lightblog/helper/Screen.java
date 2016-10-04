@@ -24,7 +24,7 @@ public class Screen {
 
         activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); // 设置横屏显示
 
-        activity.setContentView(R.layout.activity_main);
+        activity.setContentView(R.layout.activity_controller);
 
         activity.getSupportActionBar().hide(); //隐藏标题栏
     }
