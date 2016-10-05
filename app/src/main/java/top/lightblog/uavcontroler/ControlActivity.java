@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class ControlActivity extends AppCompatActivity
     private Button btnFunB;
     private Button btnFunC;
     private Button btnFunD;
+
     private SeekBar sbAcc;
 
     @Override

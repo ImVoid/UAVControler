@@ -5,6 +5,7 @@ package top.lightblog.helper;
  */
 
 public class StatusCode {
+    public static boolean jumpStatus = false;       //启动跳转状态
     public static boolean switchStatus = false;     //开关状态
     public static boolean blinkMod = false;         //快闪true  慢闪false
     public static final int BLINK_ON = 1;           //闪烁信息

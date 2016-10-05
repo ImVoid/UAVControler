@@ -77,7 +77,10 @@ public class AnimationCode {
             @Override
             public void run() {
                 Intent intent = new Intent(activity, ControlActivity.class);
-                activity.startActivity(intent);
+                if(!StatusCode.jumpStatus) {
+                    activity.startActivity(intent);
+                    activity.finish();
+                }
             }
         };
         time.schedule(task, 9000);
