@@ -27,7 +27,7 @@ public class ControlActivity extends AppCompatActivity
 
     //震动传感器
     private Vibrator vibrator;
-    long[] pattern = {0, 25};   // 震动设置
+    long[] pattern = {0, 40};   // 震动设置
     //声明控件
     private Button btnSwitch;
     private Button btnForward;
