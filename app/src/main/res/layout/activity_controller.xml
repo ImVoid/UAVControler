@@ -48,10 +48,9 @@
         android:id="@+id/layout_middle"
         android:layout_width="230dp"
         android:layout_height="250dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:translationX="20dp"
-        android:translationY="-30dp"
-        android:layout_below="@+id/btn_switch"
         android:layout_toRightOf="@+id/layout_left"
         android:background="@drawable/displayer"
         >
@@ -123,7 +122,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/btn_funA"
+        android:id="@+id/btn_funD"
         android:layout_width="100px"
         android:layout_height="100px"
         android:layout_alignRight="@+id/layout_middle"
@@ -132,28 +131,28 @@
         android:background="@drawable/btn_fund_status"/>
 
     <Button
-        android:id="@+id/btn_funB"
+        android:id="@+id/btn_funC"
         android:layout_width="100px"
         android:layout_height="100px"
+        android:layout_toLeftOf="@+id/btn_funD"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/btn_funA"
         android:translationX="10dp"
         android:background="@drawable/btn_func_status"/>
 
     <Button
-        android:id="@+id/btn_funC"
+        android:id="@+id/btn_funB"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_toLeftOf="@+id/btn_funC"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_funb_status"/>
+
+    <Button
+        android:id="@+id/btn_funA"
         android:layout_width="100px"
         android:layout_height="100px"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/btn_funB"
-        android:background="@drawable/btn_funb_status"/>
-
-    <Button
-        android:id="@+id/btn_funD"
-        android:layout_width="100px"
-        android:layout_height="100px"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/btn_funC"
         android:translationX="-10dp"
         android:background="@drawable/btn_funa_status"/>
 
