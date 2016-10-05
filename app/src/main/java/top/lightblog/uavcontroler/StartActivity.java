@@ -20,9 +20,6 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        //刚进入启动也均为未跳转
-        StatusCode.jumpStatus = false;
-
         //点击无人机，不播放动画直接进入控制台
         imgBody = (ImageView) findViewById(R.id.img_body);
         imgBody.setOnClickListener(new View.OnClickListener() {
