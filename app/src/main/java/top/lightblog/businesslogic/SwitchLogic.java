@@ -14,6 +14,6 @@ import top.lightblog.thread.SwitchBlinkTask;
 public class SwitchLogic {
     public static void doLogic(Button btn, Context context){
         new SwitchBlinkTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, btn);
-        new ConnectUAVTask().execute(context);
+        new ConnectUAVTask(context).start();
     }
 }

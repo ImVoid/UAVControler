@@ -2,56 +2,77 @@ package top.lightblog.thread;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.Socket;
-import java.util.Arrays;
 
+import top.lightblog.helper.SendAndRecUtil;
 import top.lightblog.helper.StatusCode;
 
 /**
  * Created by imliu on 2016/10/9.
  */
 
-public class ConnectUAVTask extends AsyncTask<Context, String, Boolean> {
+public class ConnectUAVTask extends Thread {
 
-    private Socket socket = null;
-    private Context context = null;
+    private Context context;
+    Socket socket = null;
+    private Handler mHandler;
+
+    public ConnectUAVTask(final Context context) {
+        this.context = context;
+        mHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case 0:
+                        Toast.makeText(context, msg.obj.toString(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        Toast.makeText(context, "连接失败", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
+
+    }
+
 
     @Override
-    protected Boolean doInBackground(Context... contexts) {
-
-        this.context = contexts[0];
+    public void run() {
+        boolean is_connection = false;
 
         try {
-            //连接无人机
-            socket = new Socket("192.168.4.1", 333);
-            OutputStream os = socket.getOutputStream();
-            os.write("GEC\r\n".getBytes());
-
-            //确认连接
-            InputStream in = socket.getInputStream();
-            byte[] rec = new byte[34];
-            in.read(rec);
-            if(rec[1] == 0x50){
-                publishProgress(StatusCode.CONNECTION_SUCCE);
-            }else {
-                publishProgress(StatusCode.CONNECTION_FAIL);
-            }
-
+            Socket socket = new Socket("192.168.4.1", 333);
+            SendAndRecUtil.socket = socket;
+            SendAndRecUtil.in = socket.getInputStream();
+            SendAndRecUtil.out = socket.getOutputStream();
+            is_connection = socket.isConnected();
         } catch (IOException e) {
-            publishProgress(StatusCode.CONNECTION_FAIL);
+            mHandler.sendMessage(mHandler.obtainMessage(1));
             e.printStackTrace();
         }
-        return null;
-    }
 
-    @Override
-    protected void onProgressUpdate(String... values) {
-        Toast.makeText(context, values[0], Toast.LENGTH_SHORT).show();
-    }
+        //连接无人机
+        if( is_connection ) {
+            StatusCode.is_connection = true;
+            SendAndRecUtil.SendCmd("GEC\r\n".getBytes());
 
+            //确认连接
+            byte[] rec = SendAndRecUtil.recive();
+            if(rec[1] == (byte) 0x50){
+                StatusCode.is_connection = true;
+                mHandler.sendMessage(mHandler.obtainMessage(0, "连接成功"));
+            }else {
+                mHandler.sendMessage(mHandler.obtainMessage(1));
+            }
+        }
+
+    }
 }

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.SeekBar;
 
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ import top.lightblog.businesslogic.FunCLogic;
 import top.lightblog.businesslogic.FunDLogic;
 import top.lightblog.businesslogic.LandingLogic;
 import top.lightblog.businesslogic.LeftLogic;
-import top.lightblog.businesslogic.LuanchLogic;
+import top.lightblog.businesslogic.LaunchLogic;
 import top.lightblog.businesslogic.RightLogic;
 import top.lightblog.businesslogic.SwitchLogic;
 import top.lightblog.helper.*;
@@ -86,19 +85,29 @@ public class ControlActivity extends AppCompatActivity
                 SwitchLogic.doLogic(btnSwitch, this);
                 break;
             case R.id.btn_launch:
-                LuanchLogic.doLogic();
+                if(StatusCode.is_connection){
+                    LaunchLogic.doLogic();
+                }
                 break;
             case R.id.btn_landing:
-                LandingLogic.doLogic();
+                if (StatusCode.is_connection) {
+                    LandingLogic.doLogic();
+                }
                 break;
             case R.id.btn_funA:
-                FunALogic.doLogic();
+                if (StatusCode.is_connection) {
+                    FunALogic.doLogic();
+                }
                 break;
             case R.id.btn_funB:
-                FunBLogic.doLogic();
+                if (StatusCode.is_connection) {
+                    FunBLogic.doLogic();
+                }
                 break;
             case R.id.btn_funC:
-                FunCLogic.doLogic();
+                if (StatusCode.is_connection) {
+                    FunCLogic.doLogic();
+                }
                 break;
             case R.id.btn_funD:
                 FunDLogic.doLogic();
@@ -133,16 +142,24 @@ public class ControlActivity extends AppCompatActivity
             vibrator.vibrate(pattern, -1);   //触发按钮按下震动反馈
             switch (view.getId()) {
                 case R.id.btn_forward:
-                    ForwardLogic.doLogic(MotionEvent.ACTION_DOWN);
+                    if (StatusCode.is_connection) {
+                        ForwardLogic.doLogic(MotionEvent.ACTION_DOWN);
+                    }
                     break;
                 case R.id.btn_back:
-                    BackLogic.doLogic(MotionEvent.ACTION_DOWN);
+                    if (StatusCode.is_connection) {
+                        BackLogic.doLogic(MotionEvent.ACTION_DOWN);
+                    }
                     break;
                 case R.id.btn_left:
-                    LeftLogic.doLogic(MotionEvent.ACTION_DOWN);
+                    if (StatusCode.is_connection) {
+                        LeftLogic.doLogic(MotionEvent.ACTION_DOWN);
+                    }
                     break;
                 case R.id.btn_right:
-                    RightLogic.doLogic(MotionEvent.ACTION_DOWN);
+                    if (StatusCode.is_connection) {
+                        RightLogic.doLogic(MotionEvent.ACTION_DOWN);
+                    }
                     break;
                 default:
                     break;
@@ -153,16 +170,24 @@ public class ControlActivity extends AppCompatActivity
             vibrator.vibrate(pattern, -1);   //触发按钮释放震动反馈
             switch (view.getId()) {
                 case R.id.btn_forward:
-                    ForwardLogic.doLogic(MotionEvent.ACTION_UP);
+                    if (StatusCode.is_connection) {
+                        ForwardLogic.doLogic(MotionEvent.ACTION_UP);
+                    }
                     break;
                 case R.id.btn_back:
-                    BackLogic.doLogic(MotionEvent.ACTION_UP);
+                    if (StatusCode.is_connection) {
+                        BackLogic.doLogic(MotionEvent.ACTION_UP);
+                    }
                     break;
                 case R.id.btn_left:
-                    LeftLogic.doLogic(MotionEvent.ACTION_UP);
+                    if (StatusCode.is_connection) {
+                        LeftLogic.doLogic(MotionEvent.ACTION_UP);
+                    }
                     break;
                 case R.id.btn_right:
-                    RightLogic.doLogic(MotionEvent.ACTION_UP);
+                    if (StatusCode.is_connection) {
+                        RightLogic.doLogic(MotionEvent.ACTION_UP);
+                    }
                     break;
                 default:
                     break;
