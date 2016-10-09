@@ -18,14 +18,14 @@ public class BuilByteUtil {
         b[3] = (byte)(500 >> 8);
         b[4] = (byte)(500 & 0xff);
         //航向
-        b[5] = (byte)(1500 >> 8);
-        b[6] = (byte)(1500 & 0xff);
+        b[5] = (byte)(1700 >> 8);
+        b[6] = (byte)(1700 & 0xff);
         //航滚
-        b[7] = (byte)(1500 >> 8);
-        b[8] = (byte)(1500 & 0xFF);
+        b[7] = (byte)(2000 >> 8);
+        b[8] = (byte)(2000 & 0xFF);
         //俯视
-        b[9] = (byte)(1500 >> 8);
-        b[10] = (byte)(1500 & 0xFF);
+        b[9] = (byte)(2000 >> 8);
+        b[10] = (byte)(2000 & 0xFF);
 
         b[11] = (byte)0x00;
         b[12] = (byte)0x00;

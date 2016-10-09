@@ -13,7 +13,7 @@ public class SendCmdThread extends Thread{
     @Override
     public void run() {
         while (StatusCode.fly){
-            SendAndRecUtil.SendCmd(BuilByteUtil.buil(StatusCode.YOUMEN, 500));
+            SendAndRecUtil.SendCmd(BuilByteUtil.buil(StatusCode.YOUMEN, 1000));
             try {
                 Thread.sleep(4);
             } catch (InterruptedException e) {
