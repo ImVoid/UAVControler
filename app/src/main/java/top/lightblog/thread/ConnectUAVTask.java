@@ -47,6 +47,7 @@ public class ConnectUAVTask extends Thread {
     @Override
     public void run() {
         boolean is_connection = false;
+
         try {
             Socket socket = new Socket("192.168.4.1", 333);
             SendAndRecUtil.socket = socket;
@@ -66,6 +67,7 @@ public class ConnectUAVTask extends Thread {
             //确认连接
             byte[] rec = SendAndRecUtil.recive();
             if(rec[1] == (byte) 0x50){
+                StatusCode.is_connection = true;
                 mHandler.sendMessage(mHandler.obtainMessage(0, "连接成功"));
             }else {
                 mHandler.sendMessage(mHandler.obtainMessage(1));
