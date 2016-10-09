@@ -5,11 +5,9 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.Socket;
-import java.util.Arrays;
 
+import top.lightblog.helper.SendAndRecUtil;
 import top.lightblog.helper.StatusCode;
 
 /**
@@ -18,34 +16,37 @@ import top.lightblog.helper.StatusCode;
 
 public class ConnectUAVTask extends AsyncTask<Context, String, Boolean> {
 
-    private Socket socket = null;
     private Context context = null;
 
     @Override
     protected Boolean doInBackground(Context... contexts) {
 
-        this.context = contexts[0];
-
         try {
+            Socket socket = new Socket("192.168.4.1", 333);
+            SendAndRecUtil.socket = socket;
+
             //连接无人机
-            socket = new Socket("192.168.4.1", 333);
-            OutputStream os = socket.getOutputStream();
-            os.write("GEC\r\n".getBytes());
+            if(SendAndRecUtil.socket != null)
+                SendAndRecUtil.SendCmd("GEC\r\n".getBytes());
 
             //确认连接
-            InputStream in = socket.getInputStream();
-            byte[] rec = new byte[34];
-            in.read(rec);
-            if(rec[1] == 0x50){
+            byte[] rec = SendAndRecUtil.recive();
+            if(rec[1] == (byte) 0x50){
+                StatusCode.is_connection = true;
                 publishProgress(StatusCode.CONNECTION_SUCCE);
             }else {
                 publishProgress(StatusCode.CONNECTION_FAIL);
             }
-
         } catch (IOException e) {
-            publishProgress(StatusCode.CONNECTION_FAIL);
             e.printStackTrace();
+            publishProgress(StatusCode.CONNECTION_FAIL);
         }
+
+        this.context = contexts[0];
+
+
+
+
         return null;
     }
 

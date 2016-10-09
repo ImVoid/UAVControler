@@ -3,6 +3,7 @@ package top.lightblog.thread;
 import android.os.AsyncTask;
 import android.widget.Button;
 
+import top.lightblog.helper.SendAndRecUtil;
 import top.lightblog.helper.StatusCode;
 import top.lightblog.uavcontroler.R;
 
@@ -22,6 +23,8 @@ public class SwitchBlinkTask extends AsyncTask<Button, Integer, Boolean> {
         if(StatusCode.switchStatus){    //如果开启了开关则关闭它
             publishProgress(StatusCode.BLINK_OFF);
             StatusCode.switchStatus = false;
+            //关闭时摧毁Scoket
+            SendAndRecUtil.socket = null;
         }else{  //关闭了就开启开关，先是快闪然后慢闪
             StatusCode.switchStatus = true;
             int lastStatus = StatusCode.BLINK_OFF;  //记录上一次闪烁状态
@@ -44,7 +47,7 @@ public class SwitchBlinkTask extends AsyncTask<Button, Integer, Boolean> {
             //循环慢闪
             StatusCode.blinkMod = false;    //设置慢闪模式
             while (true){
-                if(StatusCode.switchStatus){    //响应开启状态
+                if(StatusCode.switchStatus && StatusCode.is_connection){    //响应开启状态
                     try {
                         Thread.sleep(800);
                         publishProgress(lastStatus = (lastStatus == StatusCode.BLINK_OFF ? StatusCode.BLINK_ON : StatusCode.BLINK_OFF));
