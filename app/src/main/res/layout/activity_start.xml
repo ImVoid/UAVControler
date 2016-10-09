@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#16192b"
-    tools:context="top.lightblog.uavcontroler.MainActivity">
+    tools:context="top.lightblog.uavcontroler.StartActivity">
 
     <RelativeLayout
         android:id="@+id/uav_body"

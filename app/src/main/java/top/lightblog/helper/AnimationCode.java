@@ -76,8 +76,14 @@ public class AnimationCode {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(activity, ControlActivity.class);
-                activity.startActivity(intent);
+                if(!StatusCode.jumpStatus) {
+                    Intent intent = new Intent(activity, ControlActivity.class);
+                    activity.startActivity(intent);
+                    activity.finish();
+                }else{
+                    //为下一次跳转做准备
+                    StatusCode.jumpStatus = false;
+                }
             }
         };
         time.schedule(task, 9000);
