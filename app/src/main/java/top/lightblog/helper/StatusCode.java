@@ -10,4 +10,8 @@ public class StatusCode {
     public static boolean blinkMod = false;         //快闪true  慢闪false
     public static final int BLINK_ON = 1;           //闪烁信息
     public static final int BLINK_OFF = 2;          //熄灭信息
+
+    //message
+    public static final String CONNECTION_FAIL = "Socket创建失败";
+    public static final String CONNECTION_SUCCE = "连接成功";
 }

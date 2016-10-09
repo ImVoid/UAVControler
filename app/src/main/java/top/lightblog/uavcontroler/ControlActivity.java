@@ -83,7 +83,7 @@ public class ControlActivity extends AppCompatActivity
         //按一次即可释放的按钮写这，需要按下和释放两种状态的在onTouch()写
         switch (view.getId()) {
             case R.id.btn_switch:
-                SwitchLogic.doLogic(btnSwitch);
+                SwitchLogic.doLogic(btnSwitch, this);
                 break;
             case R.id.btn_launch:
                 LuanchLogic.doLogic();
