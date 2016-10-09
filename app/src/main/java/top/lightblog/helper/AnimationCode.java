@@ -17,6 +17,7 @@ import top.lightblog.uavcontroler.ControlActivity;
 import top.lightblog.uavcontroler.R;
 
 /**
+ * 此类是用来显现动画的类
  * Created by LeiYun on 2016/10/4 0004.
  */
 
@@ -28,7 +29,12 @@ public class AnimationCode {
     AnimatorSet uav, welcome, translation;
     RelativeLayout uav_body;
 
+    /**
+     * 动画的主方法
+     * @param activity
+     */
     public void animator_UAV(Activity activity) {
+        // 获取View视图
         img_airscerw_aboveL = (ImageView) activity.findViewById(R.id.img_airscerw_aboveL);
         img_airscerw_aboveR = (ImageView) activity.findViewById(R.id.img_airscerw_aboveR);
         img_airscerw_belowL = (ImageView) activity.findViewById(R.id.img_airscerw_belowL);
@@ -37,22 +43,24 @@ public class AnimationCode {
         tv_welcome = (TextView) activity.findViewById(R.id.tv_welcome);
         uav_body = (RelativeLayout) activity.findViewById(R.id.uav_body);
 
-
+        // 使用ObjectAnimator让View动起来，ofFloat方法是设置动画的属性。
         animator_AL = ObjectAnimator.ofFloat(img_airscerw_aboveL, "rotation", 0f, 180f, 360f);
         animator_AR = ObjectAnimator.ofFloat(img_airscerw_aboveR, "rotation", 360f, 180f, 0f);
         animator_BL = ObjectAnimator.ofFloat(img_airscerw_belowL, "rotation", 360f, 180f, 0f);
         animator_BR = ObjectAnimator.ofFloat(img_airscerw_belowR, "rotation", 0f, 180f, 360f);
 
-
+        // 也可以用写好的xml文件让View动起来
         uav = (AnimatorSet) AnimatorInflater.loadAnimator(activity, R.animator.animator_uav_alpha);
         welcome = (AnimatorSet) AnimatorInflater.loadAnimator(activity, R.animator.animator_welcome_alpha);
         translation = (AnimatorSet) AnimatorInflater.loadAnimator(activity, R.animator.animator_uav_translation);
 
+        // 设置动画的重复次数，-1代表无限
         animator_AL.setRepeatCount(-1);
         animator_AR.setRepeatCount(-1);
         animator_BL.setRepeatCount(-1);
         animator_BR.setRepeatCount(-1);
 
+        // 启动动画效果
         AnimatorSet animationSet = new AnimatorSet();
         animationSet.setInterpolator(new LinearInterpolator());
         animationSet.setDuration(170);
@@ -70,7 +78,10 @@ public class AnimationCode {
         uav.start();
     }
 
-
+    /**
+     * 此方法用来延时跳转
+     * @param activity
+     */
     public void launchController(final Activity activity){
         Timer time = new Timer();
         TimerTask task = new TimerTask() {
