@@ -33,14 +33,17 @@ public class ConnectUAVTask extends AsyncTask<Context, String, Boolean> {
             os.write("GEC\r\n".getBytes());
 
             //确认连接
-            byte[] rec = new byte[100];
             InputStream in = socket.getInputStream();
-            int len = in.read(rec);
-
-            System.out.print(Arrays.toString(rec));
+            byte[] rec = new byte[34];
+            in.read(rec);
+            if(rec[1] == 0x50){
+                publishProgress(StatusCode.CONNECTION_SUCCE);
+            }else {
+                publishProgress(StatusCode.CONNECTION_FAIL);
+            }
 
         } catch (IOException e) {
-            publishProgress(StatusCode.SOCKET_CREATE_FAIL);
+            publishProgress(StatusCode.CONNECTION_FAIL);
             e.printStackTrace();
         }
         return null;

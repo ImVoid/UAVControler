@@ -12,5 +12,6 @@ public class StatusCode {
     public static final int BLINK_OFF = 2;          //熄灭信息
 
     //message
-    public static final String SOCKET_CREATE_FAIL = "Socket创建失败";
+    public static final String CONNECTION_FAIL = "Socket创建失败";
+    public static final String CONNECTION_SUCCE = "连接成功";
 }
