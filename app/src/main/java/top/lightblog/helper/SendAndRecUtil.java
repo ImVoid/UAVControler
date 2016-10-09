@@ -14,10 +14,12 @@ import java.net.Socket;
 public class SendAndRecUtil{
 
     public static Socket socket = null;
+    public static InputStream in = null;
+    public static OutputStream out = null;
 
     public static void SendCmd(byte[] cmd){
         try {
-            socket.getOutputStream().write(cmd);
+            out.write(cmd);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -26,7 +28,7 @@ public class SendAndRecUtil{
     public static byte[] recive(){
         byte[] rec = new byte[34];
         try {
-            socket.getInputStream().read(rec);
+            in.read(rec);
             return rec;
         } catch (IOException e) {
             e.printStackTrace();
