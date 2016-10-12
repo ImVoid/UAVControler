@@ -74,14 +74,14 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/tv_left"
             android:translationY="-10dp"
-            android:text="前："
+            android:text="前：FFFF"
             android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/tv_back"
             android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:text="后："
+            android:text="后：FFFF"
             android:textSize="18sp"
             android:translationX="15dp"
             android:translationY="-10dp"
@@ -93,7 +93,7 @@
             android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="左："
+            android:text="左：FFFF"
             android:textSize="18sp" />
 
         <TextView
@@ -103,16 +103,48 @@
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@+id/tv_left"
             android:translationX="15dp"
-            android:text="右："
+            android:text="右：FFFF"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_speed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="速度："
+            android:text="速度：FFFF"
             android:layout_centerInParent="true"
+            android:translationY="15dp"
             android:textSize="20sp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_speed">
+
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/addoffset"/>
+
+            <EditText
+                android:id="@+id/edit_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textSize="20sp"
+                android:enabled="false" />
+
+            <Button
+                android:id="@+id/btn_minus"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/minusoffset"/>
+
+        </LinearLayout>
 
     </RelativeLayout>
 
@@ -170,7 +202,6 @@
             android:id="@+id/sb_acc"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:progress="3"
             android:progressDrawable="@drawable/sb_acc_status"
             android:layout_above="@+id/btn_launch"
             android:thumb="@drawable/acc"

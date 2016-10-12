@@ -23,8 +23,8 @@ public class BuilByteUtil {
             StatusCode.b[index] = (byte) ((value + raw) >> 8);
             StatusCode.b[index + 1] = (byte) ((value + raw) & 0xFF);
         }else {
-            StatusCode.b[index] = (byte) ((value - raw) >> 8);
-            StatusCode.b[index + 1] = (byte) ((value - raw) & 0xFF);
+            StatusCode.b[index] = (byte) ((raw - value) >> 8);
+            StatusCode.b[index + 1] = (byte) ((raw - value) & 0xFF);
         }
     }
 }

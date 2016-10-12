@@ -29,7 +29,7 @@ public class StatusCode {
     public static final int HANGXIANG = 5;          //航向
     public static final int HENGGUN = 7;            //横滚
     public static final int FUYANG = 9;             //俯仰
-    public static int offset = 500;                  //步进偏移量
+    public static int offset = 200;                  //步进偏移量
     //状态数组
     public static byte[] b = new byte[34];
 

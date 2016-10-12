@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,12 +50,15 @@ public class ControlActivity extends AppCompatActivity
     private Button btnFunB;
     private Button btnFunC;
     private Button btnFunD;
+    private Button btnOffesetAdd;
+    private Button btnOffesetMinus;
     private TextView tv_forward;
     private TextView tv_back;
     private TextView tv_right;
     private TextView tv_left;
     private TextView tv_speed;
     private TextView tv_connect;
+    private EditText editOffesetView;
 
     private SeekBar sbAcc;
 
@@ -100,7 +104,8 @@ public class ControlActivity extends AppCompatActivity
         tv_left = (TextView) findViewById(R.id.tv_left);
         tv_speed = (TextView) findViewById(R.id.tv_speed);
         tv_connect = (TextView) findViewById(R.id.tv_connect);
-
+        editOffesetView = (EditText) findViewById(R.id.edit_value);
+        editOffesetView.setText(Integer.toString(StatusCode.offset));
 
         //获取所有button添加到List中
         List<Button> btnList = new ArrayList<Button>();
@@ -111,6 +116,8 @@ public class ControlActivity extends AppCompatActivity
         btnList.add(btnFunB = (Button) findViewById(R.id.btn_funB));
         btnList.add(btnFunC = (Button) findViewById(R.id.btn_funC));
         btnList.add(btnFunD = (Button) findViewById(R.id.btn_funD));
+        btnList.add(btnOffesetAdd = (Button) findViewById(R.id.btn_add));
+        btnList.add(btnOffesetMinus = (Button) findViewById(R.id.btn_minus));
         //所有button添加onClick和onTouch监听器
         for (Button btn : btnList) {
             btn.setOnClickListener(this);
@@ -124,6 +131,7 @@ public class ControlActivity extends AppCompatActivity
 
         //设置SeekBar监听器
         sbAcc = (SeekBar) findViewById(R.id.sb_acc);
+        sbAcc.setMax(1000);
         sbAcc.setOnTouchListener(this);
         sbAcc.setOnSeekBarChangeListener(this);
 
@@ -136,34 +144,55 @@ public class ControlActivity extends AppCompatActivity
             case R.id.btn_switch:
                 SwitchLogic.doLogic(btnSwitch, this);
                 break;
+
             case R.id.btn_launch:
                 if(StatusCode.is_connection){
                     LaunchLogic.doLogic();
                 }
                 break;
+
             case R.id.btn_landing:
                 if (StatusCode.is_connection) {
                     LandingLogic.doLogic();
                 }
                 break;
+
             case R.id.btn_funA:
                 if (StatusCode.is_connection) {
                     FunALogic.doLogic();
                 }
                 break;
+
             case R.id.btn_funB:
                 if (StatusCode.is_connection) {
                     FunBLogic.doLogic();
                 }
                 break;
+
             case R.id.btn_funC:
                 if (StatusCode.is_connection) {
                     FunCLogic.doLogic();
                 }
                 break;
+
             case R.id.btn_funD:
                 FunDLogic.doLogic();
                 break;
+
+            case R.id.btn_add:
+                if ((StatusCode.offset + 50) < 3000) {
+                    StatusCode.offset += 50;
+                }
+                editOffesetView.setText(Integer.toString(StatusCode.offset));
+                break;
+
+            case R.id.btn_minus:
+                if ((StatusCode.offset - 50) > 0) {
+                    StatusCode.offset -= 50;
+                }
+                editOffesetView.setText(Integer.toString(StatusCode.offset));
+                break;
+
             default:
                 break;
         }
