@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Button;
 
+import top.lightblog.helper.StatusCode;
 import top.lightblog.thread.ConnectUAVTask;
 import top.lightblog.thread.SwitchBlinkTask;
 
@@ -14,6 +15,9 @@ import top.lightblog.thread.SwitchBlinkTask;
 public class SwitchLogic {
     public static void doLogic(Button btn, Context context){
         new SwitchBlinkTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, btn);
-        new ConnectUAVTask(context).start();
+        //非起飞时才启动连接线程
+        if (!StatusCode.fly) {
+            new ConnectUAVTask(context).start();
+        }
     }
 }

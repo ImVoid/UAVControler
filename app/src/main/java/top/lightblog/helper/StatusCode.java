@@ -1,5 +1,7 @@
 package top.lightblog.helper;
 
+import android.os.Handler;
+
 /**
  * Created by imliu on 2016/9/30.
  */
@@ -10,6 +12,10 @@ public class StatusCode {
     public static boolean blinkMod = false;         //快闪true  慢闪false
     public static final int BLINK_ON = 1;           //闪烁信息
     public static final int BLINK_OFF = 2;          //熄灭信息
+
+    public static final int CONNECT_CHANGED = 3;
+    public static final int ARGS_CHANGED = 4;
+
 
     public static boolean is_connection = false;    //是否连接上无人机
 
@@ -23,7 +29,7 @@ public class StatusCode {
     public static final int HANGXIANG = 5;          //航向
     public static final int HENGGUN = 7;            //横滚
     public static final int FUYANG = 9;             //俯仰
-
+    public static int offset = 500;                  //步进偏移量
     //状态数组
     public static byte[] b = new byte[34];
 
@@ -42,8 +48,8 @@ public class StatusCode {
         b[7] = (byte)(1500 >> 8);
         b[8] = (byte)(1500 & 0xFF);
         //俯视
-        b[9] = (byte)(1700 >> 8);
-        b[10] = (byte)(1700 & 0xFF);
+        b[9] = (byte)(1500 >> 8);
+        b[10] = (byte)(1500 & 0xFF);
 
         b[11] = (byte)0x00;
         b[12] = (byte)0x00;

@@ -5,6 +5,7 @@ import android.widget.Button;
 
 import java.io.IOException;
 
+import top.lightblog.helper.HandlerManager;
 import top.lightblog.helper.SendAndRecUtil;
 import top.lightblog.helper.StatusCode;
 import top.lightblog.uavcontroler.R;
@@ -23,15 +24,17 @@ public class SwitchBlinkTask extends AsyncTask<Button, Integer, Boolean> {
         btnSwitch = buttons[0];
 
         if(StatusCode.switchStatus){    //如果开启了开关则关闭它
+            HandlerManager.handler.sendMessage(HandlerManager.handler.obtainMessage(StatusCode.CONNECT_CHANGED));
             publishProgress(StatusCode.BLINK_OFF);
             StatusCode.switchStatus = false;
             if (StatusCode.is_connection) {
                 //关闭时摧毁Scoket
                 StatusCode.is_connection = false;
+                StatusCode.fly = false;
                 try {
-                    SendAndRecUtil.socket.close();
                     SendAndRecUtil.in.close();
                     SendAndRecUtil.out.close();
+                    SendAndRecUtil.socket.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

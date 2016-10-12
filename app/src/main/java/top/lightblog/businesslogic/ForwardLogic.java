@@ -13,11 +13,11 @@ import top.lightblog.helper.StatusCode;
 public class ForwardLogic {
     public static void doLogic(int action){
         if(action == MotionEvent.ACTION_DOWN){
-            BuilByteUtil.buil(StatusCode.FUYANG, 100, true);
+            BuilByteUtil.buil(StatusCode.FUYANG, StatusCode.offset, true);
         }
 
         if(action == MotionEvent.ACTION_UP){
-            BuilByteUtil.buil(StatusCode.FUYANG, 100, false);
+            BuilByteUtil.buil(StatusCode.FUYANG, StatusCode.offset, false);
         }
     }
 }
