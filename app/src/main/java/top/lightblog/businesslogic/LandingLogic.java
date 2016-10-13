@@ -19,7 +19,7 @@ public class LandingLogic {
                         StatusCode.b[3] = (byte) (raw >> 8);
                         StatusCode.b[4] = (byte) (raw & 0xff);
                         try {
-                            Thread.sleep(2);
+                            Thread.sleep(5);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
